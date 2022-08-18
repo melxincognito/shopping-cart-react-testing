@@ -1,4 +1,6 @@
 main {
   margin: 4vh 1vh;
+  display: grid;
+  justify-content: center;
   background-color: pink;
 }
