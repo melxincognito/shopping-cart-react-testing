@@ -23,7 +23,7 @@ describe("Layout component", () => {
   });
 });
 
-describe("navigation bar component", () => {
+describe("Navigation bar component", () => {
   it("has the link to the home page", () => {
     render(
       <MemoryRouter>
@@ -43,6 +43,15 @@ describe("navigation bar component", () => {
 
     const shopLink = screen.getByText(/Shop/i);
     expect(shopLink).toBeInTheDocument();
+  });
+  it("has the link to shopping cart", () => {
+    render(
+      <MemoryRouter>
+        <NavBar />
+      </MemoryRouter>
+    );
+    const shoppingCart = document.getElementById("shopping-cart");
+    expect(shoppingCart).toBeInTheDocument();
   });
 });
 
