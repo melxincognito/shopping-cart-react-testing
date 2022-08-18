@@ -77,4 +77,17 @@ describe("App component", () => {
     const shoppingPage = screen.getByText(/Shopping Page/i);
     expect(shoppingPage).toBeInTheDocument();
   });
+
+  it("Renders shopping page content after click", () => {
+    render(
+      <MemoryRouter initialEntries={["/"]}>
+        <App />
+      </MemoryRouter>
+    );
+
+    const shopButton = screen.getByText(/Shop/i);
+    userEvent.click(shopButton);
+    const shopText = screen.getByText(/Shopping Page/i);
+    expect(shopText).toBeInTheDocument();
+  });
 });
