@@ -1,0 +1,20 @@
+.main-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  background-color: purple;
+}
+
+.image-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 1vh;
+}
+
+img {
+  width: 350px;
+  height: 300px;
+}
