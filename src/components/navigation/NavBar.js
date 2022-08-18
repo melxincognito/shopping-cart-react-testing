@@ -1,6 +1,7 @@
 import React from "react";
-import { Link, Router } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./NavBar.component.css";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 export default function NavBar() {
   return (
     <>
@@ -15,6 +16,9 @@ export default function NavBar() {
             <Link className="link" to="/Shop">
               Shop
             </Link>
+          </li>
+          <li class="shopping-cart">
+            <ShoppingCartIcon />
           </li>
         </ul>
       </nav>
