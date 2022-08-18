@@ -17,7 +17,7 @@ export default function NavBar() {
               Shop
             </Link>
           </li>
-          <li class="shopping-cart">
+          <li className="shopping-cart" id="shopping-cart">
             <ShoppingCartIcon />
           </li>
         </ul>
