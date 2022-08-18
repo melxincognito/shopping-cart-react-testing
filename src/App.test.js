@@ -45,3 +45,27 @@ describe("navigation bar component", () => {
     expect(shopLink).toBeInTheDocument();
   });
 });
+
+describe("App component", () => {
+  it("Has the homepage content on the home route", () => {
+    render(
+      <MemoryRouter initialEntries={["/"]}>
+        <App />
+      </MemoryRouter>
+    );
+
+    const homePage = screen.getByText(/Home Page/i);
+    expect(homePage).toBeInTheDocument();
+  });
+
+  it("Has the shopping page content on shop route", () => {
+    render(
+      <MemoryRouter initialEntries={["/shop/"]}>
+        <App />
+      </MemoryRouter>
+    );
+
+    const shoppingPage = screen.getByText(/Shopping Page/i);
+    expect(shoppingPage).toBeInTheDocument();
+  });
+});
