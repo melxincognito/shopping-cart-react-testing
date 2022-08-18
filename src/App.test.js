@@ -6,7 +6,7 @@ import App from "./App";
 import Layout from "./components/navigation/Layout";
 import { MemoryRouter } from "react-router-dom";
 import NavBar from "./components/navigation/NavBar";
-
+import HomePage from "./pages/HomePage";
 // MEMORY ROUTER
 // https://stackoverflow.com/questions/70220413/error-usehref-may-be-used-only-in-the-context-of-a-router-component-it-wor
 // https://v5.reactrouter.com/web/guides/testing
@@ -89,5 +89,18 @@ describe("App component", () => {
     userEvent.click(shopButton);
     const shopText = screen.getByText(/Shopping Page/i);
     expect(shopText).toBeInTheDocument();
+  });
+});
+
+describe("Home Page", () => {
+  it("renders four images", () => {
+    render(<HomePage />);
+
+    let images = [];
+
+    for (let i = 0; i < 4; i++) {
+      images.push(screen.getAllByRole("img", { id: /header-image/i }));
+    }
+    expect(images.length).toBe(4);
   });
 });
