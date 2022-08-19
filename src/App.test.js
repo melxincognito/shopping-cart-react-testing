@@ -171,4 +171,43 @@ describe("Shopping Cart", () => {
     expect(screen.getByText(price)).toBeInTheDocument();
     expect(screen.getByAltText(alt)).toHaveAttribute("src", imageUrl);
   });
+
+  it("Increases the quantity of items in the shopping card", () => {
+    render(
+      <ShoppingCartItemCard
+        title="Heels"
+        price={400}
+        imageUrl="https://images.unsplash.com/photo-1660908557507-ffd94784390a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1669&q=80"
+        imageAlt="Heels"
+        index={1}
+      />
+    );
+
+    const increaseButton = screen.getByLabelText("increase-quantity-button");
+
+    userEvent.click(increaseButton);
+
+    const input = screen.getByLabelText("quantity-input");
+    expect(input.value).toBe("2");
+  });
+
+  it("Doesnt allow the shopping cart quanitity to go below 0", () => {
+    render(
+      <ShoppingCartItemCard
+        title="Heels"
+        price={400}
+        imageUrl="https://images.unsplash.com/photo-1660908557507-ffd94784390a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1669&q=80"
+        imageAlt="Heels"
+        index={1}
+      />
+    );
+
+    const decreaseButton = screen.getByLabelText("decrease-quantity-button");
+
+    userEvent.click(decreaseButton);
+
+    const newValue = screen.getByDisplayValue("1");
+
+    expect(newValue).toBeInTheDocument();
+  });
 });
