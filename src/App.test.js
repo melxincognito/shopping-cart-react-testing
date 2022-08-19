@@ -1,12 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom"; //
 import userEvent from "@testing-library/user-event";
-
 import App from "./App";
 import Layout from "./components/navigation/Layout";
 import { MemoryRouter } from "react-router-dom";
 import NavBar from "./components/navigation/NavBar";
 import HomePage from "./pages/HomePage";
+import ShoppingPageItemCard from "./components/cards/ShoppingPageItemCard";
 // MEMORY ROUTER
 // https://stackoverflow.com/questions/70220413/error-usehref-may-be-used-only-in-the-context-of-a-router-component-it-wor
 // https://v5.reactrouter.com/web/guides/testing
@@ -63,7 +63,7 @@ describe("App component", () => {
       </MemoryRouter>
     );
 
-    const shoppingPage = screen.getByText(/Shopping Page/i);
+    const shoppingPage = screen.getByText(/heels/i);
     expect(shoppingPage).toBeInTheDocument();
   });
 
@@ -76,8 +76,8 @@ describe("App component", () => {
 
     const shopButton = screen.getByLabelText("shop-link");
     userEvent.click(shopButton);
-    const shopText = screen.getByText(/Shopping Page/i);
-    expect(shopText).toBeInTheDocument();
+    const addToCartText = screen.getByText(/add to cart/i);
+    expect(addToCartText).toBeInTheDocument();
   });
 
   it("Renders homepage content from shopping page on home click", () => {
@@ -104,5 +104,27 @@ describe("Home Page", () => {
       images.push(screen.getAllByRole("img", { id: /header-image/i }));
     }
     expect(images.length).toBe(4);
+  });
+});
+
+describe("Shopping Cart Item Card", () => {
+  it("renders the correct input item information", () => {
+    render(
+      <ShoppingPageItemCard
+        itemLabel="Heels"
+        price="$4.00"
+        imageUrl="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1760&q=80"
+        imageAlt="Item 1"
+      />
+    );
+
+    let itemLabel = /heels/i;
+    let price = "$4.00";
+    let imageUrl =
+      "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1760&q=80";
+    let imageAlt = /item 1/i;
+    expect(screen.getByText(itemLabel)).toBeInTheDocument();
+    expect(screen.getByText(price)).toBeInTheDocument();
+    expect(screen.getByAltText(imageAlt)).toHaveAttribute("src", imageUrl);
   });
 });
