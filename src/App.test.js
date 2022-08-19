@@ -239,4 +239,76 @@ describe("Shopping Cart", () => {
 
     expect(newValue).toHaveValue("4");
   });
+
+  it("Increases the total cost of the item with an increased quantity", () => {
+    render(
+      <ShoppingCartItemCard
+        title="Heels"
+        price={200}
+        imageUrl="https://images.unsplash.com/photo-1660908557507-ffd94784390a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1669&q=80"
+        imageAlt="Heels"
+        index={1}
+      />
+    );
+
+    const increaseButton = screen.getByLabelText("increase-quantity-button");
+
+    // increases the quantity of the item in the shopping cart to 7
+    for (var i = 0; i < 6; i++) {
+      userEvent.click(increaseButton);
+    }
+
+    const totalPriceTextContainer = screen.getByLabelText(/total-price/i);
+
+    expect(totalPriceTextContainer).toHaveTextContent("$1400.00");
+  });
+
+  it("Decreases the total cost of the item with a decreased quantity", () => {
+    render(
+      <ShoppingCartItemCard
+        title="Heels"
+        price={100}
+        imageUrl="https://images.unsplash.com/photo-1660908557507-ffd94784390a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1669&q=80"
+        imageAlt="Heels"
+        index={1}
+      />
+    );
+
+    const increaseButton = screen.getByLabelText("increase-quantity-button");
+    const decreaseButton = screen.getByLabelText("decrease-quantity-button");
+
+    // increases the quantity of the item in the shopping cart to 9
+    for (var i = 0; i < 8; i++) {
+      userEvent.click(increaseButton);
+    }
+
+    // decreases the quantity of the item in the shopping cart by 2
+    for (var i = 0; i < 2; i++) {
+      userEvent.click(decreaseButton);
+    }
+
+    const totalPriceTextContainer = screen.getByLabelText(/total-price/i);
+
+    expect(totalPriceTextContainer).toHaveTextContent("$700.00");
+  });
+
+  it("Updates the price when a user manually inputs the quantity", () => {
+    render(
+      <ShoppingCartItemCard
+        title="Heels"
+        price={100}
+        imageUrl="https://images.unsplash.com/photo-1660908557507-ffd94784390a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1669&q=80"
+        imageAlt="Heels"
+        index={1}
+      />
+    );
+
+    const input = screen.getByLabelText("quantity-input");
+
+    fireEvent.change(input, { target: { value: "7" } });
+
+    const totalPriceTextContainer = screen.getByLabelText(/total-price/i);
+
+    expect(totalPriceTextContainer).toHaveTextContent("$700.00");
+  });
 });
