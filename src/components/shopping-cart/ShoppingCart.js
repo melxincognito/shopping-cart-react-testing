@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Drawer, Button, Divider } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
+import "./ShoppingCart.component.css";
+
 export default function ShoppingCart() {
-  const [state, setState] = useState({
+  const [toggleState, setToggleState] = useState({
     right: false,
   });
 
@@ -15,8 +17,27 @@ export default function ShoppingCart() {
       return;
     }
 
-    setState({ ...state, [anchor]: open });
+    setToggleState({ ...toggleState, [anchor]: open });
   };
+
+  const [itemsList, setItemsList] = useState();
+
+  useEffect(() => {
+    var localStorageValues = [],
+      keys = Object.keys(localStorage),
+      i = keys.length;
+
+    while (i--) {
+      localStorageValues.push(JSON.parse(localStorage.getItem(keys[i])));
+    }
+
+    // filtering items in the local storage so it's only showing the objects
+    // that have a price property. Other objects are not relevant to the cart.
+
+    var filterItems = localStorageValues.filter((el) => el.price >= 0.01);
+
+    setItemsList(filterItems);
+  }, []);
 
   // styles variables
 
@@ -42,11 +63,25 @@ export default function ShoppingCart() {
       </Button>
       <Drawer
         anchor="right"
-        open={state["right"]}
+        open={toggleState["right"]}
         onClose={toggleDrawer("right", false)}
+        className="drawer"
       >
-        Shopping Cart
+        <div className="mainContainer">
+          <button onClick={() => console.log(itemsList)}>click me </button>
+        </div>
       </Drawer>
     </div>
   );
 }
+
+// breaks tests.
+/*
+  {itemsList.forEach((item, index) => {
+          <div key={index}>
+            <h3> {item.label}</h3>
+            <h4> {item.price}</h2>
+          </div>;
+        })}
+
+*/
