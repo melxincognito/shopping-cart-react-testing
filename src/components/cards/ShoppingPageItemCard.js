@@ -13,7 +13,13 @@ export default function ShoppingPageItemCard({
       <img src={imageUrl} alt={imageAlt} />
       <h2> {itemLabel}</h2>
       <h3>${price.toFixed(2)}</h3>
-      <button onClick={() => alert(`${itemLabel}`)}> Add to cart</button>
+      <button
+        onClick={() => alert(`${itemLabel}`)}
+        aria-label="add to cart button"
+      >
+        {" "}
+        Add to cart
+      </button>
     </div>
   );
 }
