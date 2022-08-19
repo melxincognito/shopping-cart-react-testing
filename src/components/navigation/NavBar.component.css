@@ -40,14 +40,14 @@ li:hover {
   text-decoration: none;
   font-size: 25px;
   font-weight: bold;
-  color: rgb(176, 3, 176);
+  color: rgb(173, 68, 103);
 }
 
 .shopping-cart {
   font-size: 25px;
   font-weight: bold;
   border-radius: 50%;
-  color: rgb(176, 3, 176);
+  color: rgb(173, 68, 103);
 }
 
 .shopping-cart:hover {
