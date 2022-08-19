@@ -10,9 +10,9 @@ export default function ShoppingPage() {
       <div className="shoppingPageContentContainer">
         {items.map((item, index) => {
           return (
-            <div aria-label="shopping-cart-item">
+            <div aria-label="shopping-cart-item" key={index}>
               <ShoppingPageItemCard
-                key={index}
+                index={index}
                 itemLabel={item.label}
                 price={item.price}
                 imageUrl={item.url}
