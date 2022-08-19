@@ -69,7 +69,7 @@ export default function ShoppingCart() {
         onClose={toggleDrawer("right", false)}
         className="drawer"
       >
-        <div className="mainContainer">
+        <div className="shoppingCartContainer">
           <button onClick={() => console.log(itemsList)}>click me </button>
           <ShoppingCartItemCard
             title="heels"
