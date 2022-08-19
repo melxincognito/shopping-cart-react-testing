@@ -3,20 +3,25 @@ import ShoppingPageItemCard from "../components/cards/ShoppingPageItemCard";
 import "./ShoppingPage.css";
 export default function ShoppingPage() {
   return (
-    <div className="shoppingPageContainer">
-      {items.map((item, index) => {
-        return (
-          <div aria-label="shopping-cart-item">
-            <ShoppingPageItemCard
-              key={index}
-              itemLabel={item.label}
-              price={item.price}
-              imageUrl={item.url}
-              description={item.alt}
-            />
-          </div>
-        );
-      })}
+    <div className="mainContainer">
+      <div className="header">
+        <h2>MV Studio Originals</h2>
+      </div>
+      <div className="shoppingPageContentContainer">
+        {items.map((item, index) => {
+          return (
+            <div aria-label="shopping-cart-item">
+              <ShoppingPageItemCard
+                key={index}
+                itemLabel={item.label}
+                price={item.price}
+                imageUrl={item.url}
+                description={item.alt}
+              />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
