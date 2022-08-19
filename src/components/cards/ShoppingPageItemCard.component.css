@@ -7,6 +7,11 @@
   color: white;
 }
 
+img {
+  width: 250px;
+  height: 250px;
+}
+
 button {
   width: 100%;
   background-color: black;
