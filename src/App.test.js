@@ -56,17 +56,6 @@ describe("Navigation bar component", () => {
 });
 
 describe("App component", () => {
-  it("Has the homepage content on the home route", () => {
-    render(
-      <MemoryRouter initialEntries={["/"]}>
-        <App />
-      </MemoryRouter>
-    );
-
-    const homePage = screen.getByText(/Home Page/i);
-    expect(homePage).toBeInTheDocument();
-  });
-
   it("Has the shopping page content on shop route", () => {
     render(
       <MemoryRouter initialEntries={["/shop/"]}>
@@ -85,10 +74,23 @@ describe("App component", () => {
       </MemoryRouter>
     );
 
-    const shopButton = screen.getByText(/Shop/i);
+    const shopButton = screen.getByLabelText("shop-link");
     userEvent.click(shopButton);
     const shopText = screen.getByText(/Shopping Page/i);
     expect(shopText).toBeInTheDocument();
+  });
+
+  it("Renders homepage content from shopping page on home click", () => {
+    render(
+      <MemoryRouter initialEntries={["/shop/"]}>
+        <App />
+      </MemoryRouter>
+    );
+
+    const homeButton = screen.getByLabelText("home-link");
+    userEvent.click(homeButton);
+    const homeImage = screen.getByAltText(/shirt/i);
+    expect(homeImage).toBeInTheDocument();
   });
 });
 
