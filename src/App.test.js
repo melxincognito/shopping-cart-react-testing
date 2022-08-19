@@ -78,8 +78,12 @@ describe("App component", () => {
 
     const shopButton = screen.getByLabelText("shop-link");
     userEvent.click(shopButton);
-    const addToCartText = screen.getByText(/add to cart/i);
-    expect(addToCartText).toBeInTheDocument();
+
+    const items = [];
+    for (let i = 0; i < 4; i++) {
+      items.push(screen.getAllByLabelText("shopping-cart-item"));
+    }
+    expect(items.length).toBe(4);
   });
 
   it("Renders homepage content from shopping page on home click", () => {
