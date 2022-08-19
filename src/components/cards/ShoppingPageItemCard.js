@@ -6,7 +6,6 @@ export default function ShoppingPageItemCard({
   price,
   imageUrl,
   imageAlt,
-  index,
 }) {
   return (
     <div className="cardContainer">
