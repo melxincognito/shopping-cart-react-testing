@@ -17,7 +17,6 @@
 git clone https://github.com/melxincognito/shopping-cart-react-testing.git
 cd shopping-cart
 npm i
-
 ```
 
 ### 2. Run the app locally
