@@ -9,7 +9,7 @@ export default function ShoppingPageItemCard({
   index,
 }) {
   return (
-    <div className="cardContainer" id={itemLabel + " " + index}>
+    <div className="cardContainer">
       <img src={imageUrl} alt={imageAlt} />
       <h2> {itemLabel}</h2>
       <h3>{price}</h3>
