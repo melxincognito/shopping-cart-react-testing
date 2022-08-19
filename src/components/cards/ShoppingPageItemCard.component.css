@@ -1,0 +1,20 @@
+.cardContainer {
+  background-color: rgb(173, 68, 103);
+  padding: 2vh;
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.24);
+  border-radius: 20px;
+  text-decoration: underline;
+  color: white;
+}
+
+button {
+  width: 100%;
+  background-color: black;
+  color: white;
+  font-family: Vogue;
+  font-size: 2.5vh;
+  font-weight: bold;
+  padding: 0.5vh;
+  border: 2px solid white;
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.14);
+}
