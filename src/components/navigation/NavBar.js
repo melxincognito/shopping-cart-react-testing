@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.component.css";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ShoppingCart from "../shopping-cart/ShoppingCart";
 export default function NavBar() {
   return (
     <>
@@ -18,10 +18,10 @@ export default function NavBar() {
               Shop
             </Link>
           </li>
-          <li className="shopping-cart" id="shopping-cart">
-            <ShoppingCartIcon />
-          </li>
         </ul>
+        <div aria-label="shopping-cart-link">
+          <ShoppingCart aria-label="shopping-cart-link" />
+        </div>
       </nav>
     </>
   );
