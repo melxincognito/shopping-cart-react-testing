@@ -38,10 +38,16 @@ img:hover {
   text-align: center;
   align-items: center;
   z-index: 2;
-  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.64);
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.24);
 }
 
 .store-description {
   position: relative;
   top: -10vh;
+  background-color: rgba(0, 0, 0, 0.921);
+  color: white;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.54);
+  border-radius: 10px;
 }
