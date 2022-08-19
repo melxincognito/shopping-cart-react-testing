@@ -12,8 +12,8 @@ export default function ShoppingPageItemCard({
     <div className="cardContainer">
       <img src={imageUrl} alt={imageAlt} />
       <h2> {itemLabel}</h2>
-      <h3>{price}</h3>
-      <button onClick={() => alert(`${itemLabel} `)}> Add to cart</button>
+      <h3>${price.toFixed(2)}</h3>
+      <button onClick={() => alert(`${itemLabel}`)}> Add to cart</button>
     </div>
   );
 }
