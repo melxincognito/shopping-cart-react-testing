@@ -6,14 +6,15 @@ export default function NavBar() {
   return (
     <>
       <nav id="nav-bar">
+        <h1> MV Studio</h1>
         <ul>
           <li>
-            <Link className="link" to="/">
+            <Link aria-label="home-link" className="link" to="/">
               Home
             </Link>
           </li>
           <li>
-            <Link className="link" to="/Shop">
+            <Link aria-label="shop-link" className="link" to="/Shop">
               Shop
             </Link>
           </li>
