@@ -19,7 +19,7 @@ export default function HomePage() {
       <div className="circle"> MV Studio </div>
       <div className="store-description">
         {" "}
-        <h2> Shop for all your favorite clothes at MV Studio</h2>
+        <h2> Shop all your favorites at MV Studio</h2>
       </div>
     </div>
   );
