@@ -1,6 +1,4 @@
-Creating a shopping cart to practice react testing
-
-## Shopping Cart to practice TDD
+# Shopping Cart
 
 ## Overview
 
