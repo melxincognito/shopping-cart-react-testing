@@ -9,6 +9,8 @@ import HomePage from "./pages/HomePage";
 import ShoppingPageItemCard from "./components/cards/ShoppingPageItemCard";
 
 import ShoppingCart from "./components/shopping-cart/ShoppingCart";
+import ShoppingCartItemCard from "./components/cards/ShoppingCartItemCard";
+
 // MEMORY ROUTER
 // https://stackoverflow.com/questions/70220413/error-usehref-may-be-used-only-in-the-context-of-a-router-component-it-wor
 // https://v5.reactrouter.com/web/guides/testing
@@ -143,8 +145,30 @@ describe("Shopping Cart", () => {
 
     userEvent.click(button);
 
-    const cartText = screen.getByText(/Shopping Cart/i);
+    const cartText = screen.getByText(/click me/i);
 
     expect(cartText).toBeInTheDocument();
+  });
+
+  it("Renders the Shopping Cart Item Card with props", () => {
+    render(
+      <ShoppingCartItemCard
+        title="Heels"
+        price={400}
+        imageUrl="https://images.unsplash.com/photo-1660908557507-ffd94784390a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1669&q=80"
+        imageAlt="Heels"
+        index={1}
+      />
+    );
+
+    const title = /heels/i;
+    const price = "$400.00";
+    const imageUrl =
+      "https://images.unsplash.com/photo-1660908557507-ffd94784390a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1669&q=80";
+    const alt = /heels/i;
+
+    expect(screen.getByText(title)).toBeInTheDocument();
+    expect(screen.getByText(price)).toBeInTheDocument();
+    expect(screen.getByAltText(alt)).toHaveAttribute("src", imageUrl);
   });
 });
