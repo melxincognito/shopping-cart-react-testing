@@ -7,6 +7,8 @@ import { MemoryRouter } from "react-router-dom";
 import NavBar from "./components/navigation/NavBar";
 import HomePage from "./pages/HomePage";
 import ShoppingPageItemCard from "./components/cards/ShoppingPageItemCard";
+
+import ShoppingCart from "./components/shopping-cart/ShoppingCart";
 // MEMORY ROUTER
 // https://stackoverflow.com/questions/70220413/error-usehref-may-be-used-only-in-the-context-of-a-router-component-it-wor
 // https://v5.reactrouter.com/web/guides/testing
@@ -50,7 +52,7 @@ describe("Navigation bar component", () => {
         <NavBar />
       </MemoryRouter>
     );
-    const shoppingCart = document.getElementById("shopping-cart");
+    const shoppingCart = screen.getByLabelText(/shopping-cart-link/i);
     expect(shoppingCart).toBeInTheDocument();
   });
 });
@@ -126,5 +128,19 @@ describe("Shopping Cart Item Card", () => {
     expect(screen.getByText(itemLabel)).toBeInTheDocument();
     expect(screen.getByText(price)).toBeInTheDocument();
     expect(screen.getByAltText(imageAlt)).toHaveAttribute("src", imageUrl);
+  });
+});
+
+describe("Shopping Cart", () => {
+  it("Shows the shopping cart on click", () => {
+    render(<ShoppingCart />);
+
+    const button = screen.getByLabelText(/shopping-cart-button/i);
+
+    userEvent.click(button);
+
+    const cartText = screen.getByText(/Shopping Cart/i);
+
+    expect(cartText).toBeInTheDocument();
   });
 });
