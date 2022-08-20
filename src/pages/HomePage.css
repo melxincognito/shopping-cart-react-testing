@@ -11,6 +11,7 @@
   justify-content: center;
   gap: 30px;
   padding: 1vh;
+  width: 80%;
 }
 
 img {
@@ -28,7 +29,7 @@ img:hover {
 
 .circle {
   position: relative;
-  top: -40vh;
+  top: -36vh;
   width: 155px;
   height: 155px;
   background-color: white;
@@ -37,6 +38,7 @@ img:hover {
   justify-content: center;
   text-align: center;
   align-items: center;
+  text-decoration: underline;
   z-index: 2;
   box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.24);
 }

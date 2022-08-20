@@ -7,7 +7,7 @@ export default function NavBar() {
     <>
       <nav id="nav-bar">
         <div className="logo-container">
-          <h1> MV Studio</h1>
+          <h1> M.I. Studio</h1>
         </div>
 
         <ul>

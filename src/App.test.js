@@ -145,7 +145,7 @@ describe("Shopping Cart", () => {
 
     userEvent.click(button);
 
-    const cartText = screen.getByText(/click me/i);
+    const cartText = screen.getByText(/my shopping cart/i);
 
     expect(cartText).toBeInTheDocument();
   });
@@ -263,12 +263,16 @@ describe("Shopping Cart", () => {
     expect(totalPriceTextContainer).toHaveTextContent("$1400.00");
   });
 
+  const imageUrl =
+    "https://images.unsplash.com/photo-1660908557507-ffd94784390a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1669&q=80";
+
+  // userEvent
   it("Decreases the total cost of the item with a decreased quantity", () => {
     render(
       <ShoppingCartItemCard
         title="Heels"
         price={100}
-        imageUrl="https://images.unsplash.com/photo-1660908557507-ffd94784390a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1669&q=80"
+        imageUrl={imageUrl}
         imageAlt="Heels"
         index={1}
       />
@@ -291,24 +295,27 @@ describe("Shopping Cart", () => {
 
     expect(totalPriceTextContainer).toHaveTextContent("$700.00");
   });
-
+  // fireEvent and userEvent
   it("Updates the price when a user manually inputs the quantity", () => {
     render(
       <ShoppingCartItemCard
         title="Heels"
         price={100}
-        imageUrl="https://images.unsplash.com/photo-1660908557507-ffd94784390a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1669&q=80"
+        imageUrl={imageUrl}
         imageAlt="Heels"
         index={1}
       />
     );
 
     const input = screen.getByLabelText("quantity-input");
+    const totalPriceTextContainer = screen.getByLabelText(/total-price/i);
 
     fireEvent.change(input, { target: { value: "7" } });
 
-    const totalPriceTextContainer = screen.getByLabelText(/total-price/i);
-
     expect(totalPriceTextContainer).toHaveTextContent("$700.00");
+
+    userEvent.type(input, "{backspace}4");
+
+    expect(totalPriceTextContainer).toHaveTextContent("$400.00");
   });
 });

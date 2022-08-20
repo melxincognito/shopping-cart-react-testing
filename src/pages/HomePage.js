@@ -16,10 +16,13 @@ export default function HomePage() {
           );
         })}
       </div>
-      <div className="circle"> MV Studio </div>
+      <div className="circle">
+        {" "}
+        <h2> M.I. Studio </h2>{" "}
+      </div>
       <div className="store-description">
         {" "}
-        <h2> Shop all your favorites at MV Studio</h2>
+        <h2> Shop all your favorites at M.I. Studio</h2>
       </div>
     </div>
   );

@@ -15,6 +15,7 @@ export default function ShoppingCartItemCard({
   // setting hover color for increase and decrease buttons
   const [isSelectingIncrease, setIsSelectingIncrease] = useState(false);
   const [isSelectingDecrease, setIsSelectingDecrease] = useState(false);
+  const [isSelectingDelete, setIsSelectingDelete] = useState(false);
 
   const handleMouseEnterIncrease = () => {
     setIsSelectingIncrease(true);
@@ -27,6 +28,12 @@ export default function ShoppingCartItemCard({
   };
   const handleMouseLeaveDecrease = () => {
     setIsSelectingDecrease(false);
+  };
+  const handleMouseEnterDelete = () => {
+    setIsSelectingDelete(true);
+  };
+  const handleMouseLeaveDelete = () => {
+    setIsSelectingDelete(false);
   };
 
   const updateTotalPrice = (itemQuantity, individualPrice) => {
@@ -104,7 +111,7 @@ export default function ShoppingCartItemCard({
   const quantityButtonStylesIncrease = {
     backgroundColor: isSelectingIncrease ? "black" : "rgb(173, 68, 103)",
     color: "white",
-    border: "2px solid black",
+    border: "1px solid black",
     width: "15%",
     borderRadius: "10px",
     cursor: "pointer",
@@ -116,7 +123,7 @@ export default function ShoppingCartItemCard({
   const quantityButtonStylesDecrease = {
     backgroundColor: isSelectingDecrease ? "black" : "rgb(173, 68, 103)",
     color: "white",
-    border: "2px solid black",
+    border: "1px solid black",
     width: "15%",
     borderRadius: "10px",
     cursor: "pointer",
@@ -130,6 +137,7 @@ export default function ShoppingCartItemCard({
     display: "flex",
     alignItems: "start",
     height: "170px",
+    color: isSelectingDelete ? "rgb(173, 68, 103)" : "black",
   };
 
   return (
@@ -186,7 +194,11 @@ export default function ShoppingCartItemCard({
         aria-label="remove-from-cart-button"
         style={removeFromCartStyles}
       >
-        <span onClick={deleteItem}>
+        <span
+          onClick={deleteItem}
+          onMouseEnter={handleMouseEnterDelete}
+          onMouseLeave={handleMouseLeaveDelete}
+        >
           <DeleteIcon sx={{ cursor: "pointer" }} />
         </span>
       </div>

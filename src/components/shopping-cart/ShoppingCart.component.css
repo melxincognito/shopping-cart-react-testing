@@ -9,6 +9,11 @@ body {
   width: 25rem;
 }
 
+.shoppingCartTotalContainer {
+  display: grid;
+  align-items: center;
+}
+
 .shoppingCartOptionsButtons {
   width: 100%;
   background-color: black;
@@ -20,6 +25,8 @@ body {
   border: 2px solid white;
   box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.14);
   cursor: pointer;
+  border-radius: 20px;
+  margin-top: 1rem;
 }
 
 .shoppingCartOptionsButtons:hover {

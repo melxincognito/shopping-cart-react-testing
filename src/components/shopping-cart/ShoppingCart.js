@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { Drawer, Button, Divider } from "@mui/material";
+import { Drawer, Button } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 import ShoppingCartItemCard from "../cards/ShoppingCartItemCard";

@@ -22,7 +22,7 @@ export default function ShoppingPageItemCard({
 
   return (
     <div className="cardContainer">
-      <img src={imageUrl} alt={imageAlt} />
+      <img aria-label="item photo" src={imageUrl} alt={imageAlt} />
       <h2> {itemLabel}</h2>
       <h3>${price.toFixed(2)}</h3>
       <button
