@@ -5,7 +5,7 @@
 <ul>
     <li> Creating a shopping cart to practice creating applications in React using Test Driven Development. This project would usually be quick to create but I'm running automated tests with Jest as I go along.</li>
     <li>The application will consist of two landing pages and a shopping cart that is shown as an expandable drawer on the right side of the screen. The first landing page is a simple home screen with images while the second landing page is a shopping page where users can scroll through the products. Each product will display an image, a title, a price and a button that gives the user the ability to add an item to their cart. The application doesn't have a backend so these items are saved into a users localStorage.</li>
-    <li>In a users shopping cart they'll see each item they have recently added along with the total for their cart items. If a user would like to increase the quantity for an item in their cart they will be able to perform this while their cart total is automatically updated. They also have the ability to clear all items from their cart at the click of a button.</li>
+    <li>In a users shopping cart they'll see each item they have recently added along with the total for their cart items. Users can also increase the quantity of an item in their cart. They also have the ability to clear all items from their cart at the click of a button.</li>
 
 </ul>
 
