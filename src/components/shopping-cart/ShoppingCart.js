@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Drawer, Button, Divider } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
@@ -24,6 +24,8 @@ export default function ShoppingCart() {
 
   const [itemsList, setItemsList] = useState();
 
+  const [cartTotal, setCartTotal] = useState(0);
+
   useEffect(() => {
     var localStorageValues = [],
       keys = Object.keys(localStorage),
@@ -39,7 +41,20 @@ export default function ShoppingCart() {
     var filterItems = localStorageValues.filter((el) => el.price >= 0.01);
 
     setItemsList(filterItems);
+
+    // calculating the total price of the cart
+
+    var total = 0;
+    filterItems.forEach((item) => {
+      total += item.price;
+    });
+
+    setCartTotal(total);
   }, []);
+
+  const clearCart = () => {
+    window.localStorage.clear();
+  };
 
   // styles variables
 
@@ -69,28 +84,90 @@ export default function ShoppingCart() {
         onClose={toggleDrawer("right", false)}
         className="drawer"
       >
-        <div className="shoppingCartContainer">
-          <button onClick={() => console.log(itemsList)}>click me </button>
-          <ShoppingCartItemCard
-            title="heels"
-            price={400}
-            imageUrl="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1760&q=80"
-            imageAlt="heels"
-            index={0}
-          />
+        <div className="shoppingCardContentContainer">
+          <div className="shoppingCartHeaderContainer">
+            <h2 style={{ textDecoration: "underline" }}> My Shopping Cart</h2>
+          </div>
+          <div className="shoppingCartContainer">
+            {itemsList?.map((item, index) => {
+              return (
+                <Fragment key={index}>
+                  <ShoppingCartItemCard
+                    title={item.label}
+                    price={item.price}
+                    imageUrl={item.url}
+                    imageAlt={item.label}
+                    index={index}
+                  />
+                </Fragment>
+              );
+            })}
+          </div>
+          <div
+            aria-label="shopping-cart-total"
+            className="shoppingCartTotalContainer"
+          >
+            <span>
+              <h3 style={{ textDecoration: "underline" }}>Cart Total </h3>
+              <h3>${cartTotal.toFixed(2)}</h3>
+            </span>
+          </div>
+          <div
+            aria-label="shopping-cart-options"
+            className="shoppingCartOptionsContainer"
+          >
+            <button
+              className="shoppingCartOptionsButtons"
+              aria-label="clear cart button"
+              onClick={clearCart}
+            >
+              Clear Cart
+            </button>
+            <button
+              className="shoppingCartOptionsButtons"
+              aria-label="checkout button"
+            >
+              Checkout
+            </button>
+          </div>
         </div>
       </Drawer>
     </div>
   );
 }
 
+/* 
+
+{items.map((item, index) => {
+          return (
+            <div aria-label="shopping-cart-item" key={index}>
+              <ShoppingPageItemCard
+                index={index}
+                itemLabel={item.label}
+                price={item.price}
+                imageUrl={item.url}
+                description={item.alt}
+              />
+            </div>
+          );
+        })}*/
+
 // breaks tests.
 /*
-  {itemsList.forEach((item, index) => {
-          <div key={index}>
-            <h3> {item.label}</h3>
-            <h4> {item.price}</h2>
-          </div>;
+  {itemsList.map((item, index) => {
+        return (
+        <Fragment key={index}>
+        <ShoppingCartItemCard
+            title={item.label}
+            price={item.price}
+            imageUrl={item.url}
+            imageAlt={item.label}
+            index={index}
+          />
+          </Fragment>
+        
+        
+          );
         })}
 
 */
