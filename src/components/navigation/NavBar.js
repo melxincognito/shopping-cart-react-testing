@@ -6,7 +6,10 @@ export default function NavBar() {
   return (
     <>
       <nav id="nav-bar">
-        <h1> MV Studio</h1>
+        <div className="logo-container">
+          <h1> MV Studio</h1>
+        </div>
+
         <ul>
           <li>
             <Link aria-label="home-link" className="link" to="/">
@@ -19,7 +22,7 @@ export default function NavBar() {
             </Link>
           </li>
         </ul>
-        <div aria-label="shopping-cart-link">
+        <div aria-label="shopping-cart-link" className="shopping-cart">
           <ShoppingCart aria-label="shopping-cart-link" />
         </div>
       </nav>

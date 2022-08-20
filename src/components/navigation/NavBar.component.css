@@ -19,6 +19,7 @@ ul {
   display: flex;
   gap: 7vh;
   text-decoration: none;
+  flex-grow: 0.1;
 }
 
 li {
@@ -36,6 +37,10 @@ li:hover {
   box-shadow: 0px 0px 15px 3px rgba(255, 211, 150, 0.855);
 }
 
+.logo-container {
+  flex-grow: 1;
+}
+
 .link {
   text-decoration: none;
   font-size: 25px;
@@ -44,13 +49,5 @@ li:hover {
 }
 
 .shopping-cart {
-  font-size: 25px;
-  font-weight: bold;
-  border-radius: 50%;
-  color: rgb(173, 68, 103);
-}
-
-.shopping-cart:hover {
-  background-color: black;
-  color: green;
+  flex-grow: 0.05;
 }
