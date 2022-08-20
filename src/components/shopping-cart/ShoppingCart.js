@@ -60,6 +60,7 @@ export default function ShoppingCart() {
 
   const shoppingCartButtonStyles = {
     backgroundColor: "white",
+    color: "rgb(173, 68, 103)",
     borderRadius: "50%",
     width: "6vh",
     height: "6vh",
