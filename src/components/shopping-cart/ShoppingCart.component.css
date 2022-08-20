@@ -1,9 +1,27 @@
-.drawer {
-  background-color: transparent;
+body {
+  font-family: Vogue;
+}
+.shoppingCardContentContainer {
+  text-align: center;
 }
 
 .shoppingCartContainer {
-  background-color: pink;
-  width: 23rem;
-  height: 20rem;
+  width: 25rem;
+}
+
+.shoppingCartOptionsButtons {
+  width: 100%;
+  background-color: black;
+  color: white;
+  font-family: Vogue;
+  font-size: 2.5vh;
+  font-weight: bold;
+  padding: 0.5vh;
+  border: 2px solid white;
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.14);
+  cursor: pointer;
+}
+
+.shoppingCartOptionsButtons:hover {
+  background-color: rgb(173, 68, 103);
 }
