@@ -17,9 +17,7 @@ export default function ShoppingPageItemCard({
   };
 
   const sendToLocalStorage = () => {
-    window.localStorage.setItem(`${index}`, JSON.stringify(itemDetails));
-
-    alert("sent to local storage");
+    window.localStorage.setItem(`${imageUrl}`, JSON.stringify(itemDetails));
   };
 
   return (
@@ -27,7 +25,11 @@ export default function ShoppingPageItemCard({
       <img src={imageUrl} alt={imageAlt} />
       <h2> {itemLabel}</h2>
       <h3>${price.toFixed(2)}</h3>
-      <button onClick={sendToLocalStorage} aria-label="add to cart button">
+      <button
+        onClick={sendToLocalStorage}
+        aria-label="add to cart button"
+        className="addToCartButton"
+      >
         {" "}
         Add to cart
       </button>
