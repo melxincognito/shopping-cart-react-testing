@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function ShoppingCartItemCard({
   title,
@@ -10,6 +11,23 @@ export default function ShoppingCartItemCard({
   const [quantity, setQuantity] = useState(1);
 
   const [totalPrice, setTotalPrice] = useState(price);
+
+  // setting hover color for increase and decrease buttons
+  const [isSelectingIncrease, setIsSelectingIncrease] = useState(false);
+  const [isSelectingDecrease, setIsSelectingDecrease] = useState(false);
+
+  const handleMouseEnterIncrease = () => {
+    setIsSelectingIncrease(true);
+  };
+  const handleMouseLeaveIncrease = () => {
+    setIsSelectingIncrease(false);
+  };
+  const handleMouseEnterDecrease = () => {
+    setIsSelectingDecrease(true);
+  };
+  const handleMouseLeaveDecrease = () => {
+    setIsSelectingDecrease(false);
+  };
 
   const updateTotalPrice = (itemQuantity, individualPrice) => {
     setTotalPrice(itemQuantity * individualPrice);
@@ -40,6 +58,9 @@ export default function ShoppingCartItemCard({
     updateTotalPrice(inputQuantity, price);
   };
 
+  const deleteItem = () => {
+    window.localStorage.removeItem(`${imageUrl}`);
+  };
   // styles variables
 
   const imageStyles = {
@@ -54,11 +75,16 @@ export default function ShoppingCartItemCard({
     alignItems: "center",
     margin: "1rem",
     boxShadow: "0px 0px 15px 5px rgba(0, 0, 0, 0.39)",
+    backgroundColor: "white",
   };
 
   const productInformationContainerStyles = {
     width: "100%",
     textAlign: "center",
+    display: "grid",
+
+    position: "relative",
+    left: "1vh",
   };
 
   const productQuantityStyles = {
@@ -75,14 +101,35 @@ export default function ShoppingCartItemCard({
     boxShadow: "0px 0px 15px 5px rgba(0, 0, 0, 0.19)",
   };
 
-  const quantityButtonStyles = {
-    backgroundColor: "rgb(107, 74, 107)",
+  const quantityButtonStylesIncrease = {
+    backgroundColor: isSelectingIncrease ? "black" : "rgb(173, 68, 103)",
     color: "white",
     border: "2px solid black",
     width: "15%",
     borderRadius: "10px",
     cursor: "pointer",
     boxShadow: "0px 0px 15px 5px rgba(0, 0, 0, 0.19)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  };
+  const quantityButtonStylesDecrease = {
+    backgroundColor: isSelectingDecrease ? "black" : "rgb(173, 68, 103)",
+    color: "white",
+    border: "2px solid black",
+    width: "15%",
+    borderRadius: "10px",
+    cursor: "pointer",
+    boxShadow: "0px 0px 15px 5px rgba(0, 0, 0, 0.19)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  };
+
+  const removeFromCartStyles = {
+    display: "flex",
+    alignItems: "start",
+    height: "170px",
   };
 
   return (
@@ -104,7 +151,9 @@ export default function ShoppingCartItemCard({
               onClick={decreaseQuantity}
               className="quantityButton"
               aria-label="decrease-quantity-button"
-              style={quantityButtonStyles}
+              style={quantityButtonStylesDecrease}
+              onMouseEnter={handleMouseEnterDecrease}
+              onMouseLeave={handleMouseLeaveDecrease}
             >
               -
             </button>
@@ -119,7 +168,9 @@ export default function ShoppingCartItemCard({
               onClick={increaseQuantity}
               className="quantityButton"
               aria-label="increase-quantity-button"
-              style={quantityButtonStyles}
+              style={quantityButtonStylesIncrease}
+              onMouseEnter={handleMouseEnterIncrease}
+              onMouseLeave={handleMouseLeaveIncrease}
             >
               +
             </button>
@@ -129,6 +180,15 @@ export default function ShoppingCartItemCard({
             <h3>${totalPrice.toFixed(2)}</h3>
           </div>
         </div>
+      </div>
+      <div
+        className="remove-from-cart-container"
+        aria-label="remove-from-cart-button"
+        style={removeFromCartStyles}
+      >
+        <span onClick={deleteItem}>
+          <DeleteIcon sx={{ cursor: "pointer" }} />
+        </span>
       </div>
     </div>
   );
